@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.covle.cordova.taffprint"
+        version="0.7.1">
+
+    <name>Taffware Bluetooth Printer</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.4.0"/>
+    </engines>
+
+    <asset src="www/TaffPrint.js" target="js/TaffPrint.js"/>
+
+    <js-module src="www/TaffPrint.js" name="TaffPrint">
+        <clobbers target="TaffPrint" />
+    </js-module>
+
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="TaffPrint">
+                <param name="android-package" value="com.covle.cordova.plugin.TaffPrint"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+        </config-file>
+
+        <source-file src="src/android/TaffPrint.java" target-dir="src/com/covle/cordova/plugin/"/>
+        <source-file src="src/android/BluetoothService.java" target-dir="src/com/covle/cordova/plugin/"/>
+
+        <source-file src="src/android/sdk/Command.java" target-dir="src/com/covle/sdk"/>
+        <source-file src="src/android/sdk/PrinterCommand.java" target-dir="src/com/covle/sdk"/>
+        <source-file src="src/android/sdk/PrintPicture.java" target-dir="src/com/covle/sdk"/>
+
+        <resource-file src="src/android/res/drawable/logo.bmp" target="res/drawable/logo.bmp" />
+
+        <lib-file src="src/android/libs/btsdk.jar"/>
+        <!--lib-file src="src/android/libs/zixng.jar"/-->
+    </platform>
+
+</plugin>
